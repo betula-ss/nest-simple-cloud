@@ -1,0 +1,26 @@
+<form nz-form [formGroup]="profileForm" nzLayout="vertical" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label nzRequired>Username</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="username" />
+    </nz-form-control>
+  </nz-form-item>
+  <br>
+  <nz-form-item>
+    <nz-form-label>Password</nz-form-label>
+    <nz-form-control>
+      <input nz-input type="password" formControlName="password" />
+    </nz-form-control>
+  </nz-form-item>
+  <br>
+  <nz-form-item>
+    <nz-form-control>
+      <div nz-flex nzJustify="flex-end" nzAlign="flex-start">
+        <button nz-button nzType="primary" [disabled]="!profileForm.valid">
+          <nz-icon nzType="save" />
+          Save
+        </button>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,0 +1,59 @@
+<nz-card nzTitle="NestSimpleCloud" [nzLoading]="isLoading" [nzExtra]="extraTemplate">
+  <nz-list nzBordered nzSize="small" [nzDataSource]="files" [nzRenderItem]="item">
+    <ng-template #item let-file>
+      <nz-list-item>
+        <nz-list-item-meta
+          [nzTitle]="titleTemplate"
+          [nzDescription]="file.category ? file.category : '-'">
+        </nz-list-item-meta>
+        <ng-template #titleTemplate>
+          @switch (file.name.split('.').pop()?.toLowerCase()) {
+            @case ('pdf') {
+              <nz-icon nzType="file-pdf" nzTheme="outline" />
+            }
+            @case ('txt') {
+              <nz-icon nzType="file-text" nzTheme="outline" />
+            }
+            @case ('docx') {
+              <nz-icon nzType="file-word" nzTheme="outline" />
+            }
+            @case ('xls') {
+              <nz-icon nzType="file-excel" nzTheme="outline" />
+            }
+            @case ('xlsx') {
+              <nz-icon nzType="file-excel" nzTheme="outline" />
+            }
+            @default {
+              <nz-icon nzType="file" nzTheme="outline" />
+            }
+          }
+          {{file.title}}
+        </ng-template>
+        <nz-space>
+          <button *nzSpaceItem nz-button nzType="default" nz-tooltip="Download" (click)="viewFile(file)">
+            <nz-icon nzType="download" />
+          </button>
+          <button *nzSpaceItem nz-button nzType="default" nzDanger nz-tooltip="Delete" (click)="deleteFile(file.id)">
+            <nz-icon nzType="delete" />
+          </button>
+        </nz-space>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+</nz-card>
+<ng-template #extraTemplate>
+  <nz-space>
+    <button *nzSpaceItem nz-button (click)="uploadFile()" [disabled]="isLoading">
+      <nz-icon nzType="upload" />
+      Upload
+    </button>
+    <button *nzSpaceItem nz-button (click)="openSettings()" [disabled]="isLoading">
+      <nz-icon nzType="setting" />
+      Settings
+    </button>
+    <button *nzSpaceItem nz-button nzType="primary" (click)="logout()">
+      <nz-icon nzType="logout" />
+      Logout
+    </button>
+  </nz-space>
+</ng-template>

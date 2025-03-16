@@ -1,0 +1,44 @@
+<form nz-form [formGroup]="fileForm" nzLayout="vertical">
+  <nz-form-item>
+    <nz-form-label nzRequired>File name</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="title" />
+    </nz-form-control>
+  </nz-form-item>
+  <br>
+  <nz-form-item>
+    <nz-form-label>File Category</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="category" />
+    </nz-form-control>
+  </nz-form-item>
+  <br>
+  <nz-upload nzType="drag"
+             [(nzFileList)]="fileList"
+             [nzBeforeUpload]="beforeUpload"
+             [nzMultiple]="false"
+             nzShowUploadList="true">
+    <p class="ant-upload-drag-icon">
+      <nz-icon nzType="inbox" />
+    </p>
+    <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    <p class="ant-upload-hint">
+      Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+    </p>
+  </nz-upload>
+  <br />
+  <nz-form-item>
+    <nz-form-control>
+      <div nz-flex nzJustify="flex-end" nzAlign="flex-start">
+        <button nz-button
+                nzType="primary"
+                [nzLoading]="uploading"
+                (click)="handleUpload()"
+                [disabled]="fileList.length != 1 || !fileForm.valid">
+          <nz-icon nzType="upload" />
+          Upload
+        </button>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</form>

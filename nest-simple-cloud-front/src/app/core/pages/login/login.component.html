@@ -1,0 +1,33 @@
+<nz-card nzTitle="Login">
+  <form nz-form [formGroup]="formLogin" nzLayout="vertical" (ngSubmit)="login()">
+    <nz-form-item>
+      <nz-form-label nzRequired>Username</nz-form-label>
+      <nz-form-control nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+        <input nz-input formControlName="username" />
+        <ng-template #userErrorTpl let-control>
+          @if (control.errors?.['required']) {
+            Enter the user's name!
+          }
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <br>
+    <nz-form-item>
+      <nz-form-label nzRequired>Password</nz-form-label>
+      <nz-form-control nzHasFeedback nzErrorTip="Enter the password!">
+        <input nz-input type="password" formControlName="password" />
+      </nz-form-control>
+    </nz-form-item>
+    <br>
+    <nz-form-item>
+      <nz-form-control>
+        <div nz-flex nzJustify="flex-end" nzAlign="flex-start">
+          <button nz-button nzType="primary" [disabled]="!formLogin.valid">
+            <nz-icon nzType="login" />
+            Login
+          </button>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>
