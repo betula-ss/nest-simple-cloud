@@ -46,7 +46,7 @@ npx nest start --watch
 Start the frontend with:
 
 ```bash
-npx ng serve
+npm run start
 ```
 
 By default, the frontend runs on http://localhost:4200, and the backend on http://localhost:3000.
